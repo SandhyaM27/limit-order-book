@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: lob-dashboard
+    runtime: docker
+    plan: free
+    healthCheckPath: /_stcore/health

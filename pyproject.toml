@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lob"
+version = "0.1.0"
+description = "Educational event-driven limit order book and matching engine (simulation only)"
+requires-python = ">=3.12"
+dependencies = ["numpy", "pandas", "streamlit", "plotly"]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[project.scripts]
+lob-benchmark = "lob.benchmarks.benchmark:main"
+
+[tool.ruff]
+line-length = 110
+src = ["src", "tests", "dashboard"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["B905"]
+
+[tool.mypy]
+python_version = "3.12"
+files = ["src"]
+ignore_missing_imports = true
+warn_unused_ignores = true
+
+[tool.ruff.lint.per-file-ignores]
+"dashboard/app.py" = ["E402"]
